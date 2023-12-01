@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'>
+    <title>Admin Home</title>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <header th:replace="~{fragments/navbar :: css}"></header>
+        <header th:replace="~{fragments/navbar :: navbar}"></header>
+    </div>
+    <!--    <div class="row">
+            <div th:text="${msg}"></div>
+        </div>-->
+    <div class="row">
+        <div class="heading">Users</div>
+    </div>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Username</th>
+            <th>Contact Number</th>
+            <th>Address</th>
+            <th>Order List</th>
+        </tr>
+        <tr th:each="user:${userList}">
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.contact}"></td>
+            <td th:text="${user.address}"></td>
+            <td>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

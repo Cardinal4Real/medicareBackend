@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'>
+    <title>Admin Home</title>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <header th:replace="~{fragments/navbar :: css}"></header>
+        <header th:replace="~{fragments/navbar :: navbar}"></header>
+    </div>
+    <!--    <div class="row">
+            <div th:text="${msg}"></div>
+        </div>-->
+    <div class="row">
+        <div class="heading">Product List</div>
+    </div>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Image</th>
+            <th>Update</th>
+        </tr>
+        <tr th:each="prod,rowStat:${productList}">
+            <td th:text="${prod.name}"></td>
+            <td th:text="${prod.price}"></td>
+            <td th:text="${prod.quantity}"></td>
+            <td><img height="80px" th:src="${prod.url}" width="100px"/></td>
+            <td>
+                <div><a class="editgroup" th:href="@{/admin/product/update/{prodId}(prodId=${prod.id})}">Edit</a></div>
+                <div><a class="deletegroup" th:href="@{/admin/product/delete/{prodId}(prodId=${prod.id})}">Delete</a>
+                </div>
+                <!-- Edit Button
+                <button th:onclick="'toggleEditForm(' + ${rowStat.index} + ');'">Edit</button>-->
+
+                <!-- Hidden Edit Form -->
+                <!--<form id="editForm_[[${rowStat.index}]]" method="post" th:action="@{/update}" th:object="${prod}">
+                    <input th:field="*{id}" type="hidden"/>
+                    <input style="display: none;" th:field="*{name}" type="text"/>
+                    <input style="display: none;" th:field="*{price}" type="text"/>
+                    <input style="display: none;" th:field="*{quantity}" type="text"/>
+                    <input style="display: none;" th:field="*{url}" type="text"/>
+                    <button style="display: none;" type="submit">Save</button>
+                </form> -->
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

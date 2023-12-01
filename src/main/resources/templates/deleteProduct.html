@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'>
+    <title>Admin Home</title>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <header th:replace="~{fragments/navbar :: css}"></header>
+        <header th:replace="~{fragments/navbar :: navbar}"></header>
+        <!--header th:replace="fragments/navbar :: navbar"></header-->
+    </div>
+    <div class="row">
+        <span th:text="${msg}"></span>
+        <!--span th:if="${msg}!=null, setTimeOut(), msg='';"></span-->
+    </div>
+    <div class="row">
+        <div class="heading">Delete Product</div>
+    </div>
+    <div class="row justify-content-center padit">
+        <form method="post" style="border:2px solid blue" th:action="@{/admin/deleteProduct}" th:object="${prod}">
+            <input name="id" required th:field="${prod.id}" type="hidden">
+            <div class="form-group padit">
+                Product Name:<input class="form-control" disabled="true" name="name" required
+                                    th:field="${prod.name}" type="text">
+            </div>
+
+            <div class="form-group padit">
+                Unit Price:<input class="form-control" disabled="true" name="price" required th:field="${prod.price}"
+                                  type="text">
+            </div>
+            <div class="form-group padit">
+                Stock Quantity:<input class="form-control" disabled="true" name="quantity" required
+                                      th:field="${prod.quantity}" type="text">
+            </div>
+            <div class="form-group padit">
+                Product URL:<textarea class="form-control" disabled="true" name="url" required
+                                      th:field="${prod.url}"></textarea>
+            </div>
+            <div class="form-group padit">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Confirm Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    setTimeOut(()=>{
+        alert("Product Added");
+
+    },5000);
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
