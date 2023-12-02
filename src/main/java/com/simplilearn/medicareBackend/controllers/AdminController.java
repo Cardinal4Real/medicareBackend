@@ -35,11 +35,11 @@ public class AdminController {
 
     @PostMapping(value = {"/admin/login"})
     public String loginAdmin(@ModelAttribute Login login, Model model, HttpSession session) {
+        System.out.println(login);
         String nav = "";
         Admin admin = adminRepository.findByUsernameAndPassword(login.getUsername(), login.getPassword());
         if (admin != null) {
             model.addAttribute("user", admin);
-            model.addAttribute("home", "active");
             session.setAttribute("usersession", admin);
             Boolean isNew = session.isNew();
             System.out.println(isNew);
@@ -56,6 +56,7 @@ public class AdminController {
     public String homePage(Model model) {
         List<Product> productList = productRepository.findAll();
         model.addAttribute("productList", productList);
+        model.addAttribute("home", "active");
         return "adminHome";
     }
 
@@ -71,7 +72,6 @@ public class AdminController {
     @PostMapping("/admin/saveProduct")
     public String saveProduct(@ModelAttribute Product product, Model model, HttpSession session) {
         String id = session.getId();
-        System.out.println(id);
         System.out.println("Adding product");
         productRepository.save(product);
         msg = "Product Added";
@@ -128,6 +128,7 @@ public class AdminController {
     public String viewUsers(Model model) {
         List<Customer> customerList = customerRepository.findAll();
         model.addAttribute("userList", customerList);
+        model.addAttribute("viewUsers", "active");
         return "viewUsers";
     }
 }
